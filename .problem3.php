@@ -11,7 +11,7 @@ function bePositive($arr) {
     //hint: may want to use var_dump() to show final data types
     foreach ($arr as $value) {
     	
-           echo abs($value), "<br>";
+           echo abs($value), "<br>"; #Collin Tully ct359 2/26
            
     	
 	}
