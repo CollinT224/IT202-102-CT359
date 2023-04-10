@@ -1,6 +1,9 @@
 <?php
 require(__DIR__ . "/nav.php");
 ?>
+<?php
+//require(__DIR__ . "/lib/functions.php");
+?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
@@ -26,28 +29,51 @@ require(__DIR__ . "/nav.php");
 </script>
 <?php
 //TODO 2: add PHP Code
+/*
+$hasError=true;
 if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"])) {
-    $email = se($_POST, "email", "", false);
-    $password = se($_POST, "password", "", false);
-    $confirm = se(
-        $_POST,
-        "confirm",
-        "",
-        false
-    );
+    echo "Submitted";
+    echo $_POST['email'];
+    if($_POST['password']==$_POST['confirm']) //added check for password
+    $email = $_POST['email'];
+    echo $_POST['email'];
+    $password = $_POST['password'];
+    echo $_POST['password'];
+    $confirm = $_POST['confirm'];
+    echo $_POST['confirm'];
+    echo $email . ' ' . $password;
+    $hasError=false;
     //TODO 3
-    $hasError = false;
-    if (empty($email)) {
-        echo "Email must not be empty";
-        $hasError = true;
+    if(!$hasError){
+        $hash=password_hash($password, PASSWORD_BCRYPT);
+        $db=getDB();
+        //extra stuff
+        $stmt = $db->prepare("INSERT INTO Users(email, password) VALUES(:email, :password)");
+        try
+        {
+            $r= $stmt->execute([":email" => $email, "password" => $hash]);
+            echo "succesfully registered!";
+        }
+        catch (Exception $e){
+            echo "There was an unexpected error registering<br>";
+            echo "<pre>" . var_export($e,true) . "</pre>";
+            
+        }
+
     }
+}
     //sanitize
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $email = sanitize_email($email);
     //validate
-    if (!is_valid_email($email)) {
+    /*if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Invalid email address";
+        $hasError = true;*/
+    if(!is_valid_email($email)){
+        echo"invalid email address";
         $hasError = true;
     }
+
     if (empty($password)) {
         echo "password must not be empty";
         $hasError = true;
@@ -69,16 +95,6 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     if (!$hasError) {
         echo "Welcome, $email";
         //TODO 4
-        $hash = password_hash($password, PASSWORD_BCRYPT);
-        $db = getDB();
-        $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
-        try {
-            $stmt->execute([":email" => $email, ":password" => $hash]);
-            echo "Successfully registered!";
-        } catch (Exception $e) {
-            echo " There was a problem registering please try again";
-            "<pre>" . var_export($e, true) . "</pre>";
-        }
     }
-}
+//session_start();
 ?>
