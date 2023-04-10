@@ -5,7 +5,7 @@ require(__DIR__."/nav.php");
 
 <?php
 if (is_logged_in()){   
-    echo "Welcome, " . get_user_email();
+    echo "Welcome, " . get_user_email() . " I hope you have a nice day user";
 }   else{
         echo "You're not logged in";
 }
