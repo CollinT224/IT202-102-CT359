@@ -6,3 +6,8 @@ echo "You have been logged out";
 header("Location: login.php");
 echo "You have been logged out";
 ?>
+<?php 
+require(__DIR__."/partials/flash.php");
+
+?>
+flash(“You have been logged out”);
