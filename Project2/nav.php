@@ -50,8 +50,8 @@ session_start();
                             Items
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="rolesDropdown">
-                            <li><a class="dropdown-item" href="admin/add_item.php">Create</a></li>
-                            <li><a class="dropdown-item" href="admin/list_items.php">List</a></li>
+                            <li><a class="dropdown-item" href="add_item.php">Make Product</a></li>
+                            <li><a class="dropdown-item" href="list_items.php">List</a></li>
                         </ul>
             </li>
         <?php endif; ?>

@@ -3,7 +3,7 @@ require(__DIR__ . "/nav.php");
 
 $results = [];
 $db = getDB();
-$stmt = $db->prepare("SELECT id, name, description, cost, stock, image FROM RM_Items WHERE stock > 0 LIMIT 50");
+$stmt = $db->prepare("SELECT id, name, description, cost, stock, catagory image FROM Product WHERE stock > 0 LIMIT 50");
 try {
     $stmt->execute();
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -32,9 +32,6 @@ try {
                     <div class="card-header">
                         RM Placeholder
                     </div>
-                    <?php if (se($item, "image", "", false)) : ?>
-                        <img src="<?php se($item, "image"); ?>" class="card-img-top" alt="...">
-                    <?php endif; ?>
 
                     <div class="card-body">
                         <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>

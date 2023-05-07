@@ -1,7 +1,7 @@
 <?php
 //note we need to go up 1 more directory
 require(__DIR__ . "/nav.php");
-$TABLE_NAME = "RM_Items";
+$TABLE_NAME = "Product";
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: $BASE_PATH/home.php"));
@@ -62,5 +62,5 @@ function map_column($col)
 
 <?php
 //note we need to go up 1 more directory
-require_once(__DIR__ . "/partials/footer.php");
+require_once(__DIR__ . "partials/footer.php");
 ?>
