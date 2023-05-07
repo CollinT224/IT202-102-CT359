@@ -34,6 +34,7 @@ session_start();
         <?php if (is_logged_in()) : ?>
             <li><a href="home.php">Home</a></li>
             <li><a href="profile.php">Profile</a></li>
+            <li><a href="shop.php">Shop</a></li>
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="login.php">Login</a></li>
@@ -43,6 +44,16 @@ session_start();
             <li><a href="create_role.php">Create Role</a></li>
             <li><a href="admin/list_roles.php'">List Roles</a></li>
             <li><a href="'admin/assign_roles.php'">Assign Roles</a></li>
+
+            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rolesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Items
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rolesDropdown">
+                            <li><a class="dropdown-item" href="admin/add_item.php">Create</a></li>
+                            <li><a class="dropdown-item" href="admin/list_items.php">List</a></li>
+                        </ul>
+            </li>
         <?php endif; ?>
         <?php if (is_logged_in()) : ?>
             <li><a href="logout.php">Logout</a></li>
