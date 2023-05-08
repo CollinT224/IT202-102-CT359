@@ -2,6 +2,7 @@
 require(__DIR__ . "/nav.php");
 reset_session();
 ?>
+
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
@@ -20,13 +21,15 @@ reset_session();
 <script>
     function validate(form) {
         //TODO 1: implement JavaScript validation
-        //ensure it returns false for an error and true for success
+        //ensure it returns false for an error and true for success //copy register.php straight and just build it from scratch start there and work way through
 
         return true;
     }
 </script>
 <?php
-//TODO 2: add PHP Code
+//TODO 2: add PHP Code //copy from this one and create a form 
+//first step is add the form data for the fields to enter items
+//to read it look at login.php to read the table first step is to submit the entries
 if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"])) {
     $email = se($_POST, "email", "", false);
     $password = se($_POST, "password", "", false);
@@ -63,7 +66,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         $hasError = true;
     }
     if (!$hasError) {
-        //TODO 4
+        //TODO 4 //
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
         $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
